@@ -9,7 +9,7 @@ makeCacheMatrix <- function(x = matrix()) {
     get <- function() x             #getting the original matrix
     setSolve <- function(solve) s <<- solve #supersetting the solved matrix
     getSolve <- function() s        #getting cahce if already solved
-    list(set = set, get = get,      #The cahce getting saved out
+    list(set = set, get = get,      #The cahce list for future use
          setSolve = setSolve,
          getSolve = getSolve)
 }
@@ -27,5 +27,5 @@ cacheSolve <- function(x, ...) {
     sM <- solve(data)               #solve the matrix
     x$setSolve(sM)                  #set the matrix
     message("setting data to cache") #explain what happened
-    sM                              #view the matrix
+    return(sM)                      #view the matrix
 }
