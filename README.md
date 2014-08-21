@@ -59,7 +59,6 @@ function.
             data <- x$get()
             m <- mean(data, ...)
             x$setmean(m)
-            m
     }
 
 ### Assignment: Caching the Inverse of a Matrix
