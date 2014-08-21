@@ -1,31 +1,31 @@
 ##Matrix Cache and solving assignment 2 from Coursera R Programing Aug 2014
-## cacheing the Matrix. 
-makeCacheMatrix <- function(x = matrix()) {
-    s <- NULL
-    set <- function(y) {
-        x <<- y
-        s <<- NULL
+##Caching matrix function maybe the meaning will be revealed
+makeCacheMatrix <- function(x = matrix()) { 
+    s <- NULL                       #setting the solve value to null
+    set <- function(y) {            #getting the input
+        x <<- y                     #setting the input
+        s <<- NULL                  #setting the solve to null
     }
-    get <- function() x
-    setSolve <- function(solve) s <<- solve
-    getSolve <- function() s
-    list(set = set, get = get,
+    get <- function() x             #getting the original matrix
+    setSolve <- function(solve) s <<- solve #supersetting the solved matrix
+    getSolve <- function() s        #getting cahce if already solved
+    list(set = set, get = get,      #The cahce getting saved out
          setSolve = setSolve,
          getSolve = getSolve)
 }
 
 
-## inverse matrix, hopefully we can save time with out having to compute it. 
+## inverse matrix cache.  
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
-    sM <- x$getSolve()
-    if(!is.null(sM)) {
-        message("getting cached data")
-        return(sM)
+    sM <- x$getSolve()              #Setting sm to cache value if
+    if(!is.null(sM)) {              #checking if we have a cahce
+        message("getting cached data") #print a message indicating time saving
+        return(sM)                  #printing the cache
     }
-    data <- x$get()
-    sM <- solve(data)
-    x$setSolve(sM)
-    message("setting cached data to")
-    sM
+    #The inverse math in the event we do not have a cahce
+    data <- x$get()                 #get the matrix 
+    sM <- solve(data)               #solve the matrix
+    x$setSolve(sM)                  #set the matrix
+    message("setting data to cache") #explain what happened
+    sM                              #view the matrix
 }
