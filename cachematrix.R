@@ -7,7 +7,7 @@ makeCacheMatrix <- function(x = matrix()) {
         s <<- NULL
     }
     get <- function() x
-    setSolve <- function(solve) s <<- mean
+    setSolve <- function(solve) s <<- solve
     getSolve <- function() s
     list(set = set, get = get,
          setSolve = setSolve,
@@ -24,7 +24,8 @@ cacheSolve <- function(x, ...) {
         return(sM)
     }
     data <- x$get()
-    data
-    #sM <- solve(data)
-    #x$setmean(sM)
+    sM <- solve(data)
+    x$setSolve(sM)
+    message("setting cached data to")
+    sM
 }
